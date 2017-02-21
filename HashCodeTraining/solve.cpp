@@ -48,7 +48,7 @@ vector<vector<int>> solvePizzaLinear(vector<vector<char>>& pizza, uint numberIng
 			}else{
 				numberTomato++;
 			}
-			if(j-lastJ>maxSize){
+			if(j-lastJ+1>maxSize){
 				if(pizza[i][lastJ]=='M'){
 					numberShroom--;
 				}else{
@@ -86,7 +86,7 @@ vector<vector<int>> solvePizzaLinear2(vector<vector<char>>& pizza, uint numberIn
 				numberTomato++;
 			}
 			//~ cout<<pizza[i][j]<<endl;
-			if(j-lastJ>maxSize){
+			if(j-lastJ+1>maxSize){
 				if(pizza[lastJ][i]=='M'){
 					numberShroom--;
 				}else{
