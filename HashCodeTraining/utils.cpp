@@ -39,7 +39,7 @@ void printSolution(vector<vector<int>> result){
 
 
 
-void checkSolution(vector<vector<int>> result){
+void checkSolution(vector<vector<int>> result, int L, int H){
 	int nbSlice = result.size();
 
 	for(int oneSlice = 0; oneSlice < nbSlice; oneSlice++){

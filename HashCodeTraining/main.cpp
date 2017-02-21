@@ -24,9 +24,13 @@
 
 using namespace std;
 
-int R(0), C(0), L(0), H(0);
+
+
 
 int main(int argc, char ** argv){
+
+	int R(0), C(0), L(0), H(0);
+
 	string fileName(argv[1]);
 	ifstream file(fileName);
 	vector<vector<char>> pizza;

@@ -21,7 +21,7 @@
 #define UTILS_H_
 
 void printSolution(vector<vector<int>> result);
-void checkSolution(vector<vector<int>> result);
+void checkSolution(vector<vector<int>> result, int L, int H);
 
 #define SIZE 0
 
