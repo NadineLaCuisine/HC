@@ -20,8 +20,8 @@
 #ifndef UTILS_H_
 #define UTILS_H_
 
-void printSolution();
-void checkSolution();
+void printSolution(vector<vector<int>> result);
+void checkSolution(vector<vector<int>> result);
 
 #define SIZE 0
 

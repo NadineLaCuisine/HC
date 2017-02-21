@@ -22,19 +22,28 @@
 #include <parser.h>
 #include <utils.h>
 
-void printSolution(){
+void printSolution(vector<vector<int>> result){
+	int nbSlice = result.size();
 
+	fprintf(stderr, "%d\n", nbSlice);
+
+	for(int oneSlice = 0; oneSlice < nbSlice; oneSlice++){
+		for (int oneCoordinate = 0; oneCoordinate < 4; oneCoordinate++){
+			fprintf(stderr, "%d ", result[oneSlice][oneCoordinate]);
+		}
+		fprintf(stderr, "\n");
+	}
 
 }
 
 
 
-void checkSolution(){
-	int nbSlice = S;
+void checkSolution(vector<vector<int>> result){
+	int nbSlice = result.size();
 
 	for(int oneSlice = 0; oneSlice < nbSlice; oneSlice++){
 		for (int oneCoordinate = 0; oneCoordinate < 4; oneCoordinate++){
-
+			fprintf(stderr, "%d ", result[oneSlice][oneCoordinate]);
 		}
 	}
 
