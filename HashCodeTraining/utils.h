@@ -9,7 +9,7 @@
 #define UTILS_H_
 
 
-
+#define SIZE 0
 
 
 #endif /* UTILS_H_ */
