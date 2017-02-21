@@ -33,8 +33,10 @@ int main(int argc, char ** argv){
 	readFile(file, R, C, L, H, pizza);
 	//~ cout << pizza.size() << endl;
 
-	vector<vector<int>> result = solvePizza(pizza, L, H);
+	vector<vector<int>> result = solvePizzaLinear(pizza, L, H);
 	printSolution(result);
+	vector<vector<int>> result2 = solvePizzaLinear2(pizza, L, H);
+	printSolution(result2);
 
 	return 0;
 }

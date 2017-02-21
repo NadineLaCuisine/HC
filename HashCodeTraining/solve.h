@@ -29,7 +29,8 @@ using namespace std;
 
 
 
-vector<vector<int>> solvePizza(vector<vector<char>>& pizza, uint NumberIngredient,uint maxSize);
+vector<vector<int>> solvePizzaLinear2(vector<vector<char>>& pizza, uint NumberIngredient,uint maxSize);
+vector<vector<int>> solvePizzaLinear(vector<vector<char>>& pizza, uint NumberIngredient,uint maxSize);
 vector<vector<int>> solvePizzaTrivial(vector<vector<char>>& pizza, uint NumberIngredient,uint maxSize);
 
 
