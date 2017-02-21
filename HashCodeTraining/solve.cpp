@@ -38,7 +38,7 @@ vector<vector<int>> solvePizza(vector<vector<char>>& pizza, uint numberIngredien
 	uint numberShroom(0);
 	uint numberTomato(0);
 	uint lastI(0),lastJ(0);
-	for(uint i(0);  i<pizza.size();++i){
+	for(uint i(0); i<pizza.size();++i){
 		lastJ=0;
 		for(uint j(0);j<pizza[0].size();++j){
 			if(pizza[i][j]=='M'){
@@ -46,6 +46,7 @@ vector<vector<int>> solvePizza(vector<vector<char>>& pizza, uint numberIngredien
 			}else{
 				numberTomato++;
 			}
+			//~ cout<<pizza[i][j]<<endl;
 			if(j-lastJ>maxSize){
 				if(pizza[i][lastJ]=='M'){
 					numberShroom--;
@@ -57,6 +58,8 @@ vector<vector<int>> solvePizza(vector<vector<char>>& pizza, uint numberIngredien
 			if(numberShroom>=numberIngredient and numberTomato>=numberIngredient){
 				res.push_back({i,lastJ,i,j});
 				lastJ=j+1;
+				numberShroom=0;
+				numberTomato=0;
 			}
 		}
 	}
