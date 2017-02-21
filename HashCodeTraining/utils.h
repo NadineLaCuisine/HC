@@ -20,6 +20,8 @@
 #ifndef UTILS_H_
 #define UTILS_H_
 
+void printSolution();
+void checkSolution();
 
 #define SIZE 0
 
