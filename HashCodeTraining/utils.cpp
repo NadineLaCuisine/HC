@@ -22,7 +22,7 @@
 #include "parser.h"
 #include "utils.h"
 
-void printSolution(vector<vector<int>> result){
+void printSolution(vector<vector<int>>& result){
 	int nbSlice = result.size();
 
 	fprintf(stderr, "%d\n", nbSlice);
@@ -39,7 +39,7 @@ void printSolution(vector<vector<int>> result){
 
 
 
-void checkSolution(vector<vector<int>> result, int L, int H){
+void checkSolution(vector<vector<int>>& result, int L, int H){
 	int nbSlice = result.size();
 
 	for(int oneSlice = 0; oneSlice < nbSlice; oneSlice++){
@@ -52,7 +52,10 @@ void checkSolution(vector<vector<int>> result, int L, int H){
 
 		int sizeSlice = (lastRow - firstRow) * (lastColumn - firstColumn);
 
-	//	if (sizeSlice > H)
+		//~ if (sizeSlice > H){
+			//~ cout << "Failed : too many cells per slice !" << endl;
+		//~ } else {
+		//~ }
 	}
 
 }
