@@ -39,16 +39,24 @@ vector<vector<int>> solvePizza(vector<vector<char>>& pizza, uint numberIngredien
 	uint numberTomato(0);
 	uint lastI(0),lastJ(0);
 	for(uint i(0);  i<pizza.size();++i){
-		lastI=0;
+		lastJ=0;
 		for(uint j(0);j<pizza[0].size();++j){
 			if(pizza[i][j]=='M'){
 				numberShroom++;
 			}else{
 				numberTomato++;
 			}
+			if(j-lastJ>maxSize){
+				if(pizza[i][lastJ]=='M'){
+					numberShroom--;
+				}else{
+					numberTomato--;
+				}
+				lastJ++;
+			}
 			if(numberShroom>=numberIngredient and numberTomato>=numberIngredient){
-				res.push_back({lastI,j,i,j});
-				lastI=i+1;
+				res.push_back({i,lastJ,i,j});
+				lastJ=j+1;
 			}
 		}
 	}
