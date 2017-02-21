@@ -104,3 +104,15 @@ vector<vector<int>> solvePizzaLinear2(vector<vector<char>>& pizza, uint numberIn
 
 
 
+vector<vector<int>> solvePizza(vector<vector<char>>& pizza, uint numberIngredient,uint maxSize){
+	auto lol(solvePizzaLinear(pizza,numberIngredient,maxSize));
+	auto lol2(solvePizzaLinear2(pizza,numberIngredient,maxSize));
+	if(lol.size()>lol2.size()){
+		return lol;
+	}else{
+		return lol2;
+	}
+}
+
+
+
