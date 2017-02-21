@@ -95,7 +95,7 @@ vector<vector<int>> solvePizzaLinear2(vector<vector<char>>& pizza, uint numberIn
 				lastJ++;
 			}
 			if(numberShroom>=numberIngredient and numberTomato>=numberIngredient){
-				res.push_back({i,lastJ,i,j});
+				res.push_back({lastJ,i,j,i});
 				lastJ=j+1;
 				numberShroom=0;
 				numberTomato=0;
