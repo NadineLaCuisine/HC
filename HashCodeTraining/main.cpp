@@ -27,7 +27,8 @@ int main(int argc, char ** argv){
 	string fileName(argv[1]);
 	ifstream file(fileName);
 	vector<vector<char>> pizza;
-	//~ readFile(file, R, C, L, H, pizza);
+	readFile(file, R, C, L, H, pizza);
+	//~ cout << pizza.size() << endl;
 	cout << "it works BISCUIT " << endl;
 	return 0;
 }

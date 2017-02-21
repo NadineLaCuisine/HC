@@ -27,6 +27,7 @@ void readFile(ifstream& readFile, int& R, int& C, int& L, int& H, vector<vector<
 	while (not readFile.eof()){
 		i = 0;
         getline(readFile, sequence);
+        vector<char> rowPizz;
         if (not sequence.empty()){
 			values = split(sequence, ' ');
 			R = stoi(values[0]);
@@ -35,7 +36,14 @@ void readFile(ifstream& readFile, int& R, int& C, int& L, int& H, vector<vector<
 			H = stoi(values[3]);
 			while (i < R){
 				getline(readFile, sequence);
+				for (char c : sequence){
+					rowPizz.push_back(c);
+				}
+				++i;
+				pizza.push_back(rowPizz);
 			}
+			
+			//~ cout << R << " " << C << " "<< L << " " <<H << endl; 
 		}
 	}
 }
