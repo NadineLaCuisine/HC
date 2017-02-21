@@ -38,6 +38,7 @@ void printSolution(vector<vector<int>> result){
 
 
 
+
 void checkSolution(vector<vector<int>> result){
 	int nbSlice = result.size();
 
