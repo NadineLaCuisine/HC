@@ -16,9 +16,21 @@
 #include <chrono>
 #include <map>
 #include <set>
+#include <vector>
+
+
+
+using namespace std;
+
+
 
 #ifndef SOLVE_H_
 #define SOLVE_H_
+
+
+
+vector<vector<int>> solvePizza(vector<vector<char>>& pizza, uint NumberIngredient,uint maxSize);
+vector<vector<int>> solvePizzaTrivial(vector<vector<char>>& pizza, uint NumberIngredient,uint maxSize);
 
 
 
