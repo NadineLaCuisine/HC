@@ -20,19 +20,19 @@
 #include "parser.h"
 
 
-readFile(ifstream& readFile, int& R, int& C, int& L, int& H, vector<vector<char>>& pizza){
+void readFile(ifstream& readFile, int& R, int& C, int& L, int& H, vector<vector<char>>& pizza){
 	string sequence;
 	vector<string> values;
-	uint i(0);
+	int i(0);
 	while (not readFile.eof()){
 		i = 0;
         getline(readFile, sequence);
         if (not sequence.empty()){
-			value = split(sequence, ' ');
-			R = stoi(value[0]);
-			C = stoi(value[1]);
-			L = stoi(value[2]);
-			H = stoi(value[3]);
+			values = split(sequence, ' ');
+			R = stoi(values[0]);
+			C = stoi(values[1]);
+			L = stoi(values[2]);
+			H = stoi(values[3]);
 			while (i < R){
 				getline(readFile, sequence);
 			}

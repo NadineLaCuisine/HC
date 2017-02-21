@@ -16,11 +16,20 @@
 #include <chrono>
 #include <map>
 #include <set>
+#include <vector>
+#include <sstream>
+#include <string>
+#include <iostream>
+#include <fstream>
+#include <algorithm>
+#include <unordered_set>
 
 #ifndef PARSER_H_
 #define PARSER_H_
 
-readFile(ifstream& readFile, int& R, int& C, int& L, int& H, vector<vector<char>>& pizza);
+using namespace std;
+
+void readFile(ifstream& readFile, int& R, int& C, int& L, int& H, vector<vector<char>>& pizza);
 vector<string> split(const string &s, char delim);
 
 
