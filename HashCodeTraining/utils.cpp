@@ -18,6 +18,26 @@
 #include <map>
 #include <set>
 
+#include <solve.h>
+#include <parser.h>
+#include <utils.h>
 
+void printSolution(){
+
+
+}
+
+
+
+void checkSolution(){
+	int nbSlice = S;
+
+	for(int oneSlice = 0; oneSlice < nbSlice; oneSlice++){
+		for (int oneCoordinate = 0; oneCoordinate < 4; oneCoordinate++){
+
+		}
+	}
+
+}
 
 
