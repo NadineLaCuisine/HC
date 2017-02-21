@@ -17,12 +17,18 @@
 #include <map>
 #include <set>
 
+#include "parser.h"
+
 using namespace std;
 
+int R(0), C(0), L(0), H(0);
 
-int main(){
-	cout<<"IT WORKS BISCUIT"<<endl;
+int main(int argc, char ** argv){
+	string fileName(argv[1]);
+	ifstream file(fileName);
+	vector<vector<char>> pizza;
+	readFile(file, R, C, L, H, pizza);
+	cout << "it works BISCUIT " << endl;
 	return 0;
 }
-
 
