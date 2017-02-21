@@ -34,7 +34,7 @@ int main(int argc, char ** argv){
 	//~ cout << pizza.size() << endl;
 	cout << "it works BISCUIT " << endl;
 
-	vector<vector<int>> result = solvePizzaTrivial(pizza, L, H);
+	vector<vector<int>> result = solvePizza(pizza, L, H);
 	printSolution(result);
 
 	return 0;
