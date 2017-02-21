@@ -77,6 +77,8 @@ vector<vector<int>> solvePizzaLinear2(vector<vector<char>>& pizza, uint numberIn
 	uint lastI(0),lastJ(0);
 	for(uint i(0); i<pizza[0].size();++i){
 		lastJ=0;
+		numberShroom=0;
+		numberTomato=0;
 		for(uint j(0);j<pizza.size();++j){
 			if(pizza[j][i]=='M'){
 				numberShroom++;
