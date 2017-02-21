@@ -18,6 +18,9 @@
 #include <set>
 
 #include "parser.h"
+#include "solve.h"
+#include "utils.h"
+
 
 using namespace std;
 
@@ -30,6 +33,10 @@ int main(int argc, char ** argv){
 	readFile(file, R, C, L, H, pizza);
 	//~ cout << pizza.size() << endl;
 	cout << "it works BISCUIT " << endl;
+
+	vector<vector<int>> result = solvePizzaTrivial(pizza, L, H);
+	printSolution(result);
+
 	return 0;
 }
 
