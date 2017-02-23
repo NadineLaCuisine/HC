@@ -32,6 +32,7 @@ int main(int argc, char ** argv){
 	srand (time(NULL));
 
 
+
 	//Opening input file
 	string inFileName(argv[1]);
 	ifstream inFile(inFileName);
