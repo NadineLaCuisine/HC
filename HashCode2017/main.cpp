@@ -43,7 +43,7 @@ int main(int argc, char ** argv){
 	vector<int> sizesVideos;
 	readFile(inFile, values, vecPoints, sizesVideos);
 
-	vector<vector<int>> result;// = solveProblem(sizesVideos, vecPoints, values[4], values[3]);
+	vector<vector<int>> result = solveProblem(sizesVideos, vecPoints, values[4], values[3]);
 
 	checkSolution(result, sizesVideos, values[4]);
 
