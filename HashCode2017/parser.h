@@ -39,9 +39,10 @@ struct point{
 	vector<int> latencyToServers;
 	vector<int> videosId;
 	vector<int> nbRequests;
+	
 };
 
-void readFile(ifstream& readFile, vector<int>& values, vector<point>& vecPoints);
+void readFile(ifstream& readFile, vector<int>& values, vector<point>& vecPoints, vector<int>& sizesVideos);
 
 vector<int> split(const string &s, char delim);
 
