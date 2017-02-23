@@ -61,9 +61,9 @@ int main(int argc, char ** argv){
 	vector<vector<int> > finalResult;
 	#pragma omp parallel for
 	for (uint i=0; i < 100; ++i){
-		
+		//~ cout << "i " << i << endl;
 		vector<vector<int> > resultrandom = solveProblemRandom(sizesVideos,  vecPoints, values.back(), values[3], serverToPoint);
-		cout << resultrandom.size() << endl;
+		//~ cout << resultrandom.size() <<  endl;
 		int scorerandom = getScore(resultrandom, vecPoints);
 		//~ cout << scorerandom << endl;
 		if (scorerandom > bestScore){
@@ -72,6 +72,7 @@ int main(int argc, char ** argv){
 		}
 	}
 	cout << bestScore << endl;
+	printSolution(outFile, finalResult);
 	//~ cout << vecPoints[1].videosId.size() << endl;
 
 	return 0;
