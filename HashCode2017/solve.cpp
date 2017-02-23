@@ -24,9 +24,6 @@ using namespace std;
 
 
 
-
-
-
 vector<vector<int>> solveProblem(vector<vector<char>>& pizza){
 	vector<vector<int>> result;
 	return result;

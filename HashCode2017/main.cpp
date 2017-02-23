@@ -28,6 +28,9 @@ using namespace std;
 
 
 int main(int argc, char ** argv){
+	//LABASE
+	srand (time(NULL));
+
 
 	//Opening input file
 	string inFileName(argv[1]);
