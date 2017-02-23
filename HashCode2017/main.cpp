@@ -56,7 +56,7 @@ int main(int argc, char ** argv){
 	//~ cout << values.back() << " " << values[3] << endl;
 	while (i<100){
 		cout << i << endl;
-		result = solveProblemRandom(sizesVideos,  vecPoints, values.back(), values[3]);
+		result = solveProblemRandom(sizesVideos,  vecPoints, values.back(), values[3],serverToPoint);
 		++i;
 	}
 

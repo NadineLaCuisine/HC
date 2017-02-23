@@ -38,10 +38,13 @@ int maxVector(vector<int>& V){
 }
 
 
+bool comparatorConnectivity (pair<int,int> A, pair<int,int> B) { return (A.second<B.second); }
+
+
 
 vector<vector<int>> solveProblem(const vector<int>& sizeVideos,  const vector<point>& pointsVector, int sizeServer, int serverNumber, const vector<vector<int>>& serverToPoint){
 	vector<vector<int>> result;
-	//~ cout<<"go"<<endl;
+	//~ cout<<sizeServer<<endl;
 	//foreach server
 	for (int i(0);i<serverNumber;++i){
 		//~ cout<<"i"<<i<<endl;
@@ -111,6 +114,52 @@ vector<vector<int>> solveProblemRandom(const vector<int>& sizeVideos,  const vec
 	}
 	return result;
 }
+
+
+//~ vector<vector<int>> solveProble2ouf(const vector<int>& sizeVideos,  const vector<point>& pointsVector, int sizeServer, int serverNumber, const vector<vector<int>>& serverToPoint){
+	//~ vector<vector<int>> result;
+	//~ vector<pair<int,int>> serverConnectivity(serverNumber);
+	//~ for(int i(0);i<serverNumber;++i){
+		//~ serverConnectivity[i].first=i;
+	//~ }
+	//~ for(int i(0);i<pointsVector.size();++i){
+		//~ for(int j(0);j<pointsVector[i].idServers.size();++j){
+			//~ serverConnectivity[pointsVector[i].idServers[j]].second++;
+		//~ }
+	//~ }
+	//~ sort(serverConnectivity.begin(),serverConnectivity.end(),comparatorConnectivity);
+	//~ //foreach server
+	//~ for (int i(0);i<serverConnectivity.size();++i){
+		//~ int score(0);
+		//~ vector<pair<int,int>> videoScore;
+		//~ set<int> videoSet;
+		//~ vector<int> clients=serverToPoint[i];
+		//~ point client(pointsVector[clients[j]]);
+		//~ for(uint ii(0);ii<client.videosId.size();++ii){
+			//~ videoSet.insert(client.videosId[ii]);
+		//~ }
+		//~ for(auto video : videoSet) {
+			//~ for(uint ii(0);ii<client.videosId.size();++ii){
+				//~ int bestLatence computeBL(video,j);
+				//~ int latence;
+				//~ for(uint id(0);id<client.idServers.size();++id){
+					//~ if(client.idServers[id]==j){
+						//~ latence=client.latencyToServers[id];
+					//~ }
+				//~ }
+				//~ for(uint id(0);id<client.idServers.size();++id){
+					//~ if(client.idServers[id]==j){
+						//~ latence=client.latencyToServers[id];
+					//~ }
+				//~ }
+				//~ if(latence<bestLatence){
+					//~ score+=(bestLatence-latence)*
+				//~ }
+			//~ }
+		//~ }
+	//~ }
+	//~ return result;
+//~ }
 
 
 
