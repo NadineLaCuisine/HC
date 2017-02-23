@@ -45,9 +45,10 @@ int main(int argc, char ** argv){
 	readFile(inFile, values, vecPoints, sizesVideos, serverToPoint);
 
 	vector<vector<int> > result = solveProblem(sizesVideos, vecPoints, values[4], values[3],serverToPoint);
-
+	printf("Result is computed\n");
 	checkSolution(result, sizesVideos, values[4]);
-
+	printf("Result is checked\n");
+	printf("Score is %ld\n", getScore(result, vecPoints));
 	printSolution(outFile, result);
 
 
