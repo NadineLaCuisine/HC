@@ -32,6 +32,7 @@ int main(int argc, char ** argv){
 	srand (time(NULL));
 
 
+
 	//Opening input file
 	string inFileName(argv[1]);
 	ifstream inFile(inFileName);
@@ -45,11 +46,19 @@ int main(int argc, char ** argv){
 	readFile(inFile, values, vecPoints, sizesVideos, serverToPoint);
 
 	vector<vector<int> > result = solveProblem(sizesVideos, vecPoints, values[4], values[3],serverToPoint);
+	//~ printf("Result is computed\n");
+	//~ checkSolution(result, sizesVideos, values[4]);
+	//~ printf("Result is checked\n");
+	//~ printf("Score is %ld\n", getScore(result, vecPoints));
+	//~ printSolution(outFile, result);
 
-	checkSolution(result, sizesVideos, values[4]);
-
-	printSolution(outFile, result);
-
+	uint i(0);
+	//~ cout << values.back() << " " << values[3] << endl;
+	while (i<100){
+		cout << i << endl;
+		result = solveProblemRandom(sizesVideos,  vecPoints, values.back(), values[3]);
+		++i;
+	}
 
 	return 0;
 }
