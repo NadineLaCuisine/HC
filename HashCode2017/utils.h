@@ -23,6 +23,7 @@
 void printSolution(FILE* file, vector<vector<int>>& result);
 void checkSolution(vector<vector<int>>& result, vector<int> sizesVideo, int maxSize);
 int64_t getScore(vector<vector<int>>& result, vector<struct point>& endPoints);
+int getScoreVideoEndPoint(int videoId, int endPointId, vector<struct point>& endPoints, vector<vector<int>>& result);
 
 
 

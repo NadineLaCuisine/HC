@@ -99,37 +99,33 @@ int64_t getScore(vector<vector<int>>& result, vector<struct point>& endPoints){
 	return score/scoreDataCenter;
 }
 
-int getScoreVideoEndPoint(int videoId, int endPointId, vector<struct point>& endPoints){
+int getScoreVideoEndPoint(int videoId, int endPointId, vector<struct point>& endPoints, vector<vector<int>>& result){
 
-//	int oneEndPoint = endPointId;
-//	int videoID = videoId;
-//	int videoNBRequest = endPoints[oneEndPoint].nbRequests[oneRequest];
-//
-//	int minLatency = latencyToDataCenter;
-//	for (unsigned int oneConnectedServer = 0; oneConnectedServer < endPoints[oneEndPoint].idServers.size(); oneConnectedServer++){
-//		int serverId = endPoints[oneEndPoint].idServers[oneConnectedServer];
-//		int serverLatency = endPoints[oneEndPoint].latencyToServers[oneConnectedServer];
-//
-//		bool serverContainsVideo = false;
-//		for (unsigned int oneVideoInServer = 0; oneVideoInServer<result[serverId].size(); oneVideoInServer++){
-//			if (videoID == result[serverId][oneVideoInServer]){
-//				serverContainsVideo = true;
-//				break;
-//			}
-//		}
-//
-//
-//		if (serverContainsVideo)
-//			if (serverLatency<minLatency)
-//				minLatency = serverLatency;
-//
-//	}
-//
-//	//We compute the local score
-//	int localScore = (latencyToDataCenter - minLatency)*1000*videoNBRequest;
-//	score += localScore;
+	int videoID = videoId;
+	int oneEndPoint = endPointId;
 
-	return 0;
+	int minLatency = endPoints[endPointId].dataCenterLatency;
+	for (unsigned int oneConnectedServer = 0; oneConnectedServer < endPoints[oneEndPoint].idServers.size(); oneConnectedServer++){
+		int serverId = endPoints[oneEndPoint].idServers[oneConnectedServer];
+		int serverLatency = endPoints[oneEndPoint].latencyToServers[oneConnectedServer];
+
+		bool serverContainsVideo = false;
+		for (unsigned int oneVideoInServer = 0; oneVideoInServer<result[serverId].size(); oneVideoInServer++){
+			if (videoID == result[serverId][oneVideoInServer]){
+				serverContainsVideo = true;
+				break;
+			}
+		}
+
+
+		if (serverContainsVideo)
+			if (serverLatency<minLatency)
+				minLatency = serverLatency;
+
+	}
+
+
+	return minLatency;
 }
 
 
