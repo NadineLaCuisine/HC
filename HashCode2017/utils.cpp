@@ -43,26 +43,28 @@ void checkSolution(vector<vector<int>>& result, vector<int> sizesVideo, int maxS
 	for (unsigned int oneServer = 0; oneServer<result.size(); oneServer++){
 		int totalSize = 0;
 		for (unsigned int oneVideo = 0; oneVideo<result[oneServer].size(); oneVideo++){
-			totalSize += sizesVideo[oneVideo];
+			totalSize += sizesVideo[result[oneServer][oneVideo]];
 		}
 
 		if (totalSize > maxSize){
 			printf("Error: server %d has too much video (max %d, actual %d)\n", oneServer, maxSize, totalSize);
-			exit(-1);
 		}
 	}
 }
 
-int getScore(vector<vector<int>>& result, vector<struct point>& endPoints){
+int64_t getScore(vector<vector<int>>& result, vector<struct point>& endPoints){
 
-	int score = 0;
+	int64_t score = 0;
+	int64_t scoreDataCenter = 0;
+
 
 	//For all endpoint
 	for (unsigned int oneEndPoint = 0; oneEndPoint < endPoints.size(); oneEndPoint++){
 		int latencyToDataCenter = endPoints[oneEndPoint].dataCenterLatency;
 
+
 		//For all request from this endpoint
-		for (unsigned int oneRequest = 0; oneRequest < endPoints[oneEndPoint].idServers.size(); oneRequest++){
+		for (unsigned int oneRequest = 0; oneRequest < endPoints[oneEndPoint].videosId.size(); oneRequest++){
 			int videoID = endPoints[oneEndPoint].videosId[oneRequest];
 			int videoNBRequest = endPoints[oneEndPoint].nbRequests[oneRequest];
 
@@ -87,17 +89,20 @@ int getScore(vector<vector<int>>& result, vector<struct point>& endPoints){
 			}
 
 			//We compute the local score
-			int localScore = (latencyToDataCenter - minLatency)*1000*videoNBRequest;
+			int localScore = (latencyToDataCenter - minLatency)*videoNBRequest*1000;
 			score += localScore;
+			scoreDataCenter += videoNBRequest;
+
 		}
 	}
 
-	return score;
+	return score/scoreDataCenter;
 }
 
 int getScoreVideoEndPoint(int videoId, int endPointId, vector<struct point>& endPoints){
 
-//	int videoID = endPoints[oneEndPoint].videosId[oneRequest];
+//	int oneEndPoint = endPointId;
+//	int videoID = videoId;
 //	int videoNBRequest = endPoints[oneEndPoint].nbRequests[oneRequest];
 //
 //	int minLatency = latencyToDataCenter;
