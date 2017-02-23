@@ -99,7 +99,7 @@ int64_t getScore(vector<vector<int>>& result, vector<struct point>& endPoints){
 	return score/scoreDataCenter;
 }
 
-int getScoreVideoEndPoint(int videoId, int endPointId, vector<struct point>& endPoints, vector<vector<int>>& result){
+int getScoreVideoEndPoint(int videoId, int endPointId, const vector<struct point>& endPoints, vector<vector<int>>& result){
 
 	int videoID = videoId;
 	int oneEndPoint = endPointId;
