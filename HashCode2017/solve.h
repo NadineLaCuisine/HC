@@ -17,6 +17,7 @@
 #include <map>
 #include <set>
 #include <vector>
+#include "parser.h"
 
 
 
@@ -30,7 +31,7 @@ using namespace std;
 
 
 
-vector<vector<int>> solveProblem(const vector<uint>& sizeVideos,  const vector<point>& pointsVector, int sizeServer, int serverNumber);
+vector<vector<int>> solveProblem(const vector<int>& sizeVideos,  const vector<point>& pointsVector, int sizeServer, int serverNumber);
 
 
 
