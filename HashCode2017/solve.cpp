@@ -43,7 +43,7 @@ vector<vector<int>> solveProblem(const vector<int>& sizeVideos,  const vector<po
 	vector<vector<int>> result;
 	vector<vector<int>> serverToPoint;
 	//foreach server
-	for (uint i(0);i<serverNumber;++i){
+	for (int i(0);i<serverNumber;++i){
 		vector<int> videoCached;
 		vector<int> videoScore(sizeVideos.size(),0);
 		vector<int> clients=serverToPoint[i];
@@ -58,7 +58,7 @@ vector<vector<int>> solveProblem(const vector<int>& sizeVideos,  const vector<po
 		for(uint iii(0);iii<videoScore.size();++iii){
 			videoScore[iii]/=sizeVideos[iii];
 		}
-		uint capacity(0);
+		int capacity(0);
 		//fill the server
 		while(capacity<sizeServer){
 			int indiceMax(maxVector(videoScore));
@@ -80,7 +80,7 @@ vector<vector<int>> solveProblemRandom(const vector<int>& sizeVideos,  const vec
 	vector<vector<int>> result;
 	vector<vector<int>> serverToPoint;
 	//foreach server
-	for (uint i(0);i<serverNumber;++i){
+	for (int i(0);i<serverNumber;++i){
 		vector<int> videoCached;
 		vector<int> videoScore(sizeVideos.size(),0);
 		vector<int> clients=serverToPoint[i];
@@ -91,7 +91,7 @@ vector<vector<int>> solveProblemRandom(const vector<int>& sizeVideos,  const vec
 				videoScore[client.videosId[ii]]+=client.nbRequests[ii];
 			}
 		}
-		uint capacity(0);
+		int capacity(0);
 		//fill the server
 		uint iter(0);
 		while(capacity<sizeServer and iter<1000){
