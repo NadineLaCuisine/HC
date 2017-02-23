@@ -24,8 +24,14 @@
 
 void printSolution(FILE* file, vector<vector<int>>& result){
 
-	fprintf(file, "This should be a solution\n");
-
+	fprintf(file, "%d\n", result.size());
+	for (int oneServer = 0; oneServer<result.size(); oneServer++){
+		fprintf(file, "%d ", oneServer);
+		for (int oneVideo = 0; oneVideo<result[oneServer].size(); oneVideo++){
+			fprintf(file, "%d ", result[oneServer][oneVideo]);
+		}
+		fprintf(file, "\n");
+	}
 
 }
 
