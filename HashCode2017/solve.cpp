@@ -86,80 +86,101 @@ vector<vector<int>> solveProblem(const vector<int>& sizeVideos,  const vector<po
 vector<vector<int>> solveProblemRandom(const vector<int>& sizeVideos,  const vector<point>& pointsVector, int sizeServer, int serverNumber, const vector<vector<int>>& serverToPoint){
 	vector<vector<int>> result;
 	//foreach server
-	for (int i(0);i<serverNumber;++i){
-		vector<int> videoCached;
-		vector<int> videoScore(sizeVideos.size(),0);
-		vector<int> clients=serverToPoint[i];
-		//foreach client
-		for(uint j(0);j<clients.size();++j){
-			point client(pointsVector[clients[j]]);
-			for(uint ii(0);ii<client.videosId.size();++ii){
-				videoScore[client.videosId[ii]]+=client.nbRequests[ii];
-			}
-		}
-		int capacity(0);
-		//fill the server
-		uint iter(0);
-		while(capacity<sizeServer and iter<1000){
-			int indice=rand()%videoScore.size();
-			if(videoScore[indice]!=0){
-				if(sizeVideos[indice]+capacity<=sizeServer){
-					capacity+=sizeVideos[indice];
-				}else{
-					iter++;
-				}
-			}
-		}
-		result.push_back(videoCached);
-	}
+	//~ for (int i(0);i<serverNumber;++i){
+		//~ vector<int> videoCached;
+		//~ vector<int> videodispo;
+		//~ vector<int> clients=serverToPoint[i];
+		//~ //foreach client
+		//~ for(uint j(0);j<clients.size();++j){
+			//~ point client(pointsVector[clients[j]]);
+			//~ for(uint ii(0);ii<client.videosId.size();++ii){
+				//~ videodispo.push_back([client.videosId[ii]]);
+			//~ }
+		//~ }
+
+		//~ int capacity(0);
+		//~ //fill the server
+		//~ uint iter(0);
+		//~ while(capacity<sizeServer and iter<1000){
+			//~ int indice=rand()%videoScore.size();
+			//~ if(videoScore[indice]!=0){
+				//~ if(sizeVideos[indice]+capacity<=sizeServer){
+					//~ capacity+=sizeVideos[indice];
+				//~ }else{
+					//~ iter++;
+				//~ }
+			//~ }
+		//~ }
+		//~ result.push_back(videoCached);
+	//~ }
 	return result;
 }
 
 
-//~ vector<vector<int>> solveProble2ouf(const vector<int>& sizeVideos,  const vector<point>& pointsVector, int sizeServer, int serverNumber, const vector<vector<int>>& serverToPoint){
-	//~ vector<vector<int>> result;
-	//~ vector<pair<int,int>> serverConnectivity(serverNumber);
-	//~ for(int i(0);i<serverNumber;++i){
-		//~ serverConnectivity[i].first=i;
-	//~ }
-	//~ for(int i(0);i<pointsVector.size();++i){
-		//~ for(int j(0);j<pointsVector[i].idServers.size();++j){
-			//~ serverConnectivity[pointsVector[i].idServers[j]].second++;
-		//~ }
-	//~ }
-	//~ sort(serverConnectivity.begin(),serverConnectivity.end(),comparatorConnectivity);
-	//~ //foreach server
-	//~ for (int i(0);i<serverConnectivity.size();++i){
-		//~ int score(0);
-		//~ vector<pair<int,int>> videoScore;
-		//~ set<int> videoSet;
-		//~ vector<int> clients=serverToPoint[i];
-		//~ point client(pointsVector[clients[j]]);
-		//~ for(uint ii(0);ii<client.videosId.size();++ii){
-			//~ videoSet.insert(client.videosId[ii]);
-		//~ }
-		//~ for(auto video : videoSet) {
-			//~ for(uint ii(0);ii<client.videosId.size();++ii){
+vector<vector<int>> solveProble2ouf(const vector<int>& sizeVideos,  const vector<point>& pointsVector, int sizeServer, int serverNumber, const vector<vector<int>>& serverToPoint){
+	vector<vector<int>> result;
+	vector<pair<int,int>> serverConnectivity(serverNumber);
+	for(int i(0);i<serverNumber;++i){
+		serverConnectivity[i].first=i;
+	}
+	for(int i(0);i<pointsVector.size();++i){
+		for(int j(0);j<pointsVector[i].idServers.size();++j){
+			serverConnectivity[pointsVector[i].idServers[j]].second++;
+		}
+	}
+	sort(serverConnectivity.begin(),serverConnectivity.end(),comparatorConnectivity);
+	//foreach server
+	for (int i(0);i<serverConnectivity.size();++i){
+		vector<int> videoLoaded;
+		int score(0);
+		vector<pair<int,int>> videoScore;
+		set<int> videoSet;
+		vector<int> clients=serverToPoint[i];
+		for (int j(0);j<clients.size();++j){//LOL PUT J
+			point client(pointsVector[clients[j]]);
+			for(uint ii(0);ii<client.videosId.size();++ii){
+				videoSet.insert(client.videosId[ii]);
+			}
+		}
+		for(auto video : videoSet) {
+			for(uint ii(0);ii<clients.size();++ii){
 				//~ int bestLatence computeBL(video,j);
-				//~ int latence;
-				//~ for(uint id(0);id<client.idServers.size();++id){
-					//~ if(client.idServers[id]==j){
-						//~ latence=client.latencyToServers[id];
-					//~ }
-				//~ }
-				//~ for(uint id(0);id<client.idServers.size();++id){
-					//~ if(client.idServers[id]==j){
-						//~ latence=client.latencyToServers[id];
-					//~ }
-				//~ }
-				//~ if(latence<bestLatence){
-					//~ score+=(bestLatence-latence)*
-				//~ }
-			//~ }
-		//~ }
-	//~ }
-	//~ return result;
-//~ }
+				int bestLatence (1000);
+				int latence;
+				point client(pointsVector[clients[ii]]);
+				for(uint id(0);id<client.idServers.size();++id){
+					if(client.idServers[id]==i){
+						latence=client.latencyToServers[id];
+					}
+				}
+				int nbrequest;
+				for(uint id(0);id<client.videosId.size();++id){
+					if(client.videosId[id]==video){
+						nbrequest=client.nbRequests[id];
+					}
+				}
+				if(latence<bestLatence){
+					score+=(bestLatence-latence)*nbrequest;
+				}
+				videoScore.push_back({video,score});
+			}
+		}
+		sort(videoScore.begin(),videoScore.end(),comparatorConnectivity);
+		int freespace(sizeServer);
+		for(uint indVideoScore(0);indVideoScore<videoScore.size();++indVideoScore){
+			int indiceVideo(videoScore[indVideoScore].first);
+			int weight(sizeVideos[indiceVideo]);
+			if(weight<=freespace){
+				videoLoaded.push_back(indiceVideo);
+				freespace-=weight;
+			}else{
+				break;
+			}
+		}
+		result.push_back(videoLoaded);
+	}
+	return result;
+}
 
 
 
