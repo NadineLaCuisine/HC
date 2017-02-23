@@ -39,9 +39,9 @@ int maxVector(vector<int>& V){
 
 
 
-vector<vector<int>> solveProblem(const vector<int>& sizeVideos,  const vector<point>& pointsVector, int sizeServer, int serverNumber){
+vector<vector<int>> solveProblem(const vector<int>& sizeVideos,  const vector<point>& pointsVector, int sizeServer, int serverNumber, const vector<vector<int>>& serverToPoint){
 	vector<vector<int>> result;
-	vector<vector<int>> serverToPoint;
+	//~ vector<vector<int>> serverToPoint;
 	//foreach server
 	for (int i(0);i<serverNumber;++i){
 		vector<int> videoCached;

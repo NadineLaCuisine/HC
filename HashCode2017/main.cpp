@@ -44,7 +44,7 @@ int main(int argc, char ** argv){
 	vector<vector<int>> serverToPoint;
 	readFile(inFile, values, vecPoints, sizesVideos, serverToPoint);
 
-	vector<vector<int> > result = solveProblem(sizesVideos, vecPoints, values[4], values[3]);
+	vector<vector<int> > result = solveProblem(sizesVideos, vecPoints, values[4], values[3],serverToPoint);
 
 	checkSolution(result, sizesVideos, values[4]);
 
