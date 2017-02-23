@@ -90,6 +90,8 @@ int getScore(vector<vector<int>>& result, vector<struct point>& endPoints){
 	}
 }
 
+int getScoreVideoEndPoint(int videoId, int endPointId, vector<struct point>& endPoints){
 
+}
 
 
