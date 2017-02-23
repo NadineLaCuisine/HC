@@ -30,8 +30,8 @@
 using namespace std;
 
 
-void readFile(ifstream& readFile, vector<vector<char>>& problem);
-vector<string> split(const string &s, char delim);
+//~ void readFile(ifstream& readFile, vector<vector<char>>& problem);
+
 
 struct point{
 	int dataCenterLatency;
@@ -40,7 +40,10 @@ struct point{
 	vector<int> videosId;
 	vector<int> nbRequests;
 };
-	
+
+void readFile(ifstream& readFile, vector<int>& values, vector<point>& vecPoints);
+
+vector<int> split(const string &s, char delim);
 
 
 
