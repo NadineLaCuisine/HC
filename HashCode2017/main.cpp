@@ -16,6 +16,7 @@
 #include <chrono>
 #include <map>
 #include <set>
+#include <atomic>
 
 #include "parser.h"
 #include "solve.h"
@@ -52,13 +53,26 @@ int main(int argc, char ** argv){
 	//~ printf("Score is %ld\n", getScore(result, vecPoints));
 	//~ printSolution(outFile, result);
 
-	uint i(0);
+	//~ uint i(0);
+	//~ cout << vecPoints[1].videosId.size() << endl;
 	//~ cout << values.back() << " " << values[3] << endl;
-	while (i<100){
-		cout << i << endl;
-		result = solveProblemRandom(sizesVideos,  vecPoints, values.back(), values[3],serverToPoint);
-		++i;
+	atomic<int> bestScore;
+	bestScore=0;
+	vector<vector<int> > finalResult;
+	#pragma omp parallel for
+	for (uint i=0; i < 100; ++i){
+		
+		vector<vector<int> > resultrandom = solveProblemRandom(sizesVideos,  vecPoints, values.back(), values[3], serverToPoint);
+		cout << resultrandom.size() << endl;
+		int scorerandom = getScore(resultrandom, vecPoints);
+		//~ cout << scorerandom << endl;
+		if (scorerandom > bestScore){
+			bestScore = scorerandom;
+			finalResult = resultrandom;
+		}
 	}
+	cout << bestScore << endl;
+	//~ cout << vecPoints[1].videosId.size() << endl;
 
 	return 0;
 }
