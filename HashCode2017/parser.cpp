@@ -34,15 +34,23 @@ void readFile(ifstream& readFile, vector<int>& values, vector<point>& vecPoints,
 	    //~ cout << "wut" << endl;
 	    getline(readFile, sequence);
 	    if (not sequence.empty()){
+		
+		//~ cout << "here" << endl;
 		values = split(sequence, ' '); // V E R C X
+		for (uint i(0); i < values.size(); ++i){
+		    //~ cout << values[i] << endl;
+		}
+		//~ cout << values[3] << endl;
 		getline(readFile, sequence);
 		sizesVideos = split(sequence, ' '); // sizes of videos
-		
+		nbPoints = 0;
 		//points info
 		while (nbPoints < values[1]){
 		    //~ cout << values[1] << endl;
+		    
 		    getline(readFile, sequence);
 		    infoPoint = split(sequence, ' ');
+		    //~ cout << "infop " << infoPoint[1] << endl; 
 		    nbServers = 0;
 		    servers = {};
 		    latency = {};
@@ -57,11 +65,11 @@ void readFile(ifstream& readFile, vector<int>& values, vector<point>& vecPoints,
 		    vecPoints.push_back(p);
 		    ++nbPoints;
 		}
-		//~ cout << "vid" << endl;
+		//~ cout << "vid" << values[0] << endl;
 		// videos info
 		
-		while ((not readFile.eof()) and nbVideos < values[0]){
-		    //~ cout << nbVideos << endl;
+		while ((not readFile.eof()) and nbVideos < values[2]){
+		    cout << nbVideos << endl;
 		    getline(readFile, sequence);
 		    infoVideo = split(sequence, ' ');
 		    vecPoints[infoVideo[1]].videosId.push_back(infoVideo[0]);
@@ -70,36 +78,25 @@ void readFile(ifstream& readFile, vector<int>& values, vector<point>& vecPoints,
 		}
 		//~ cout << "endvid" << endl;
 	    }
-			    //~ i = 0;
-//			values = split(sequence, ' ');
-//			R = stoi(values[0]);
-//			C = stoi(values[1]);
-//			L = stoi(values[2]);
-//			H = stoi(values[3]);
-//
-//			while (i < R){
-//				vector<char> rowPizz = {};
-//				getline(readFile, sequence);
-//				if (not sequence.empty()){
-//					for (char c : sequence){
-//						rowPizz.push_back(c);
-//					}
-//				}
-//				++i;
-//				//~ cout << "*** "<<rowPizz.size() << endl;
-//				pizza.push_back(rowPizz);
-//			}
-//
-//			//~ cout << R << " " << C << " "<< L << " " <<H << endl;
-		//~ }
+
 	}
-	
-	serverToPoint.reserve(values[3]);
+	//~ cout << "here" << endl;
+	//~ serverToPoint.resize(uint(values[3]), {});
+	cout << values[3] << endl;
+	for (int i(0); i < values[3]; ++i){
+	    serverToPoint.push_back({});
+	}
+	//~ cout << "here1 " << serverToPoint.size() <<endl;
 	for (uint i(0); i < vecPoints.size(); ++i){
-	    for (auto&& id : vecPoints[i].idServers){
-		serverToPoint[id].push_back(i);
+	    //~ cout << i << " " << vecPoints.size() << endl;
+	    for (uint id(0); id < vecPoints[i].idServers.size(); ++id){
+		//~ cout << "go1" << endl;
+		//~ cout << vecPoints[i].idServers[id] << endl;
+		serverToPoint[vecPoints[i].idServers[id]].push_back(i);
+		//~ cout << "go" << endl;
 	    }
 	}
+	//~ cout << "eee" << endl;
 }
 
 
