@@ -42,7 +42,7 @@ struct point{
 	
 };
 
-void readFile(ifstream& readFile, vector<int>& values, vector<point>& vecPoints, vector<int>& sizesVideos, vector<vector<int>> serverToPoint);
+void readFile(ifstream& readFile, vector<int>& values, vector<point>& vecPoints, vector<int>& sizesVideos, vector<vector<int>>& serverToPoint);
 
 vector<int> split(const string &s, char delim);
 
