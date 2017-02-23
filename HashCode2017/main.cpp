@@ -41,9 +41,9 @@ int main(int argc, char ** argv){
 	vector<int> values;
 	vector<point> vecPoints;
 	readFile(inFile, values, vecPoints);
-	//~ readFile(inFile, problem);
 
-	//~ vector<vector<int>> result = solveProblem(problem);
+	vector<vector<int>> result = solveProblem(sizesVideos, vecPoints, values[4], values[3]);
+
 	//~ checkSolution(result);
 
 	//~ printSolution(outFile, result);

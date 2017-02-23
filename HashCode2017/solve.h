@@ -30,7 +30,7 @@ using namespace std;
 
 
 
-vector<vector<int>> solveProblem(vector<vector<char>>& problem);
+vector<vector<int>> solveProblem(const vector<uint>& sizeVideos,  const vector<point>& pointsVector, int sizeServer, int serverNumber);
 
 
 
