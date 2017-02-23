@@ -69,7 +69,7 @@ void readFile(ifstream& readFile, vector<int>& values, vector<point>& vecPoints,
 		// videos info
 		
 		while ((not readFile.eof()) and nbVideos < values[2]){
-		    cout << nbVideos << endl;
+		    //~ cout << nbVideos << endl;
 		    getline(readFile, sequence);
 		    infoVideo = split(sequence, ' ');
 		    vecPoints[infoVideo[1]].videosId.push_back(infoVideo[0]);
@@ -82,7 +82,7 @@ void readFile(ifstream& readFile, vector<int>& values, vector<point>& vecPoints,
 	}
 	//~ cout << "here" << endl;
 	//~ serverToPoint.resize(uint(values[3]), {});
-	cout << values[3] << endl;
+	//~ cout << values[3] << endl;
 	for (int i(0); i < values[3]; ++i){
 	    serverToPoint.push_back({});
 	}
@@ -97,6 +97,7 @@ void readFile(ifstream& readFile, vector<int>& values, vector<point>& vecPoints,
 	    }
 	}
 	//~ cout << "eee" << endl;
+	cout << "End parsing." << endl;
 }
 
 
