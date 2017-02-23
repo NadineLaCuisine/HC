@@ -20,7 +20,7 @@
 #include "parser.h"
 
 
-void readFile(ifstream& readFile, vector<int>& values, vector<point>& vecPoints, vector<int>& sizesVideos){
+void readFile(ifstream& readFile, vector<int>& values, vector<point>& vecPoints, vector<int>& sizesVideos, vector<vector<int>>& serverToPoint){
 	string sequence;
 	//~ vector<int> sizesVideos;
 	vector<int> infoPoint;
@@ -92,6 +92,13 @@ void readFile(ifstream& readFile, vector<int>& values, vector<point>& vecPoints,
 //
 //			//~ cout << R << " " << C << " "<< L << " " <<H << endl;
 		//~ }
+	}
+	
+	serverToPoint.reserve(values[3]);
+	for (uint i(0); i < vecPoints.size(); ++i){
+	    for (auto&& id : vecPoints[i].idServers){
+		serverToPoint[id].push_back(i);
+	    }
 	}
 }
 
