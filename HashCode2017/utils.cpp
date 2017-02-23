@@ -77,6 +77,7 @@ int getScore(vector<vector<int>>& result, vector<struct point>& endPoints){
 					break;
 				}
 
+
 				if (serverContainsVideo)
 					if (serverLatency<minLatency)
 						minLatency = serverLatency;
