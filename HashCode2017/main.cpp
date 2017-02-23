@@ -38,13 +38,15 @@ int main(int argc, char ** argv){
 
 	FILE* outFile = fopen(argv[2], "w");
 
-	vector<vector<char>> problem;
-	readFile(inFile, problem);
+	vector<int> values;
+	vector<point> vecPoints;
+	readFile(inFile, values, vecPoints);
+	//~ readFile(inFile, problem);
 
-	vector<vector<int>> result = solveProblem(problem);
-	checkSolution(result);
+	//~ vector<vector<int>> result = solveProblem(problem);
+	//~ checkSolution(result);
 
-	printSolution(outFile, result);
+	//~ printSolution(outFile, result);
 
 
 	return 0;
