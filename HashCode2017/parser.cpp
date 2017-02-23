@@ -20,16 +20,57 @@
 #include "parser.h"
 
 
-void readFile(ifstream& readFile, vector<vector<char>>& problem){
+void readFile(ifstream& readFile, vector<int>& values, vector<point>& vecPoints, vector<int>& sizesVideos){
 	string sequence;
-	vector<string> values;
-	int i(0);
+	//~ vector<int> sizesVideos;
+	vector<int> infoPoint;
+	vector<int> infoServer;
+	int nbPoints(0), nbVideos(0);
+	int nbServers(0);
+	vector<int> servers;
+	vector<int> latency;
+	vector<int> infoVideo;
 	while (not readFile.eof()){
+	    //~ cout << "wut" << endl;
+	    getline(readFile, sequence);
+	    if (not sequence.empty()){
+		values = split(sequence, ' '); // V E R C X
+		getline(readFile, sequence);
+		sizesVideos = split(sequence, ' '); // sizes of videos
 		
-        getline(readFile, sequence);
-        
-        if (not sequence.empty()){
-			i = 0;
+		//points info
+		while (nbPoints < values[1]){
+		    //~ cout << values[1] << endl;
+		    getline(readFile, sequence);
+		    infoPoint = split(sequence, ' ');
+		    nbServers = 0;
+		    servers = {};
+		    latency = {};
+		    while(nbServers < infoPoint[1]){
+			getline(readFile, sequence);
+			infoServer = split(sequence, ' ');
+			servers.push_back(infoServer[0]);
+			latency.push_back(infoServer[1]);
+			++nbServers;
+		    }
+		    point p({infoPoint[0], servers, latency, {}, {}});
+		    vecPoints.push_back(p);
+		    ++nbPoints;
+		}
+		//~ cout << "vid" << endl;
+		// videos info
+		
+		while ((not readFile.eof()) and nbVideos < values[0]){
+		    //~ cout << nbVideos << endl;
+		    getline(readFile, sequence);
+		    infoVideo = split(sequence, ' ');
+		    vecPoints[infoVideo[1]].videosId.push_back(infoVideo[0]);
+		    vecPoints[infoVideo[1]].nbRequests.push_back(infoVideo[2]);
+		    ++nbVideos;
+		}
+		//~ cout << "endvid" << endl;
+	    }
+			    //~ i = 0;
 //			values = split(sequence, ' ');
 //			R = stoi(values[0]);
 //			C = stoi(values[1]);
@@ -50,17 +91,18 @@ void readFile(ifstream& readFile, vector<vector<char>>& problem){
 //			}
 //
 //			//~ cout << R << " " << C << " "<< L << " " <<H << endl;
-		}
+		//~ }
 	}
 }
 
 
-vector<string> split(const string &s, char delim){
+vector<int> split(const string &s, char delim){
   stringstream ss(s);
   string item;
-  vector<string> elems;
+  //~ vector<string> elems;
+  vector<int> elems;
   while (getline(ss, item, delim)) {
-    elems.push_back(std::move(item)); 
+    elems.push_back(std::move(stoi(item))); 
   }
   return elems;
 }
