@@ -33,6 +33,15 @@ using namespace std;
 void readFile(ifstream& readFile, vector<vector<char>>& problem);
 vector<string> split(const string &s, char delim);
 
+struct point{
+	int dataCenterLatency;
+	vector<int> idServers;
+	vector<int> latencyToServers;
+	vector<int> videosId;
+	vector<int> nbRequests;
+};
+	
+
 
 
 #endif /* PARSER_H_ */
