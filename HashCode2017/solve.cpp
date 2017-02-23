@@ -85,34 +85,34 @@ vector<vector<int>> solveProblem(const vector<int>& sizeVideos,  const vector<po
 
 vector<vector<int>> solveProblemRandom(const vector<int>& sizeVideos,  const vector<point>& pointsVector, int sizeServer, int serverNumber, const vector<vector<int>>& serverToPoint){
 	vector<vector<int>> result;
-	//foreach server
-	//~ for (int i(0);i<serverNumber;++i){
-		//~ vector<int> videoCached;
-		//~ vector<int> videodispo;
-		//~ vector<int> clients=serverToPoint[i];
-		//~ //foreach client
-		//~ for(uint j(0);j<clients.size();++j){
-			//~ point client(pointsVector[clients[j]]);
-			//~ for(uint ii(0);ii<client.videosId.size();++ii){
-				//~ videodispo.push_back([client.videosId[ii]]);
-			//~ }
-		//~ }
-
-		//~ int capacity(0);
-		//~ //fill the server
-		//~ uint iter(0);
-		//~ while(capacity<sizeServer and iter<1000){
-			//~ int indice=rand()%videoScore.size();
-			//~ if(videoScore[indice]!=0){
-				//~ if(sizeVideos[indice]+capacity<=sizeServer){
-					//~ capacity+=sizeVideos[indice];
-				//~ }else{
-					//~ iter++;
-				//~ }
-			//~ }
-		//~ }
-		//~ result.push_back(videoCached);
-	//~ }
+	//~ //foreach server
+	for (int i(0);i<serverNumber;++i){
+		vector<int> videoCached;
+		vector<int> videodispo;
+		vector<int> clients=serverToPoint[i];
+		//foreach client
+		for(uint j(0);j<clients.size();++j){
+			point client(pointsVector[clients[j]]);
+			for(uint ii(0);ii<client.videosId.size();++ii){
+				videodispo.push_back(client.videosId[ii]);
+			}
+		}
+		sort( videodispo.begin(), videodispo.end() );
+		videodispo.erase( unique( videodispo.begin(), videodispo.end() ), videodispo.end() );
+		int capacity(0);
+		//fill the server
+		while(capacity<sizeServer and (not videodispo.empty())){
+			int indice=rand()%videodispo.size();
+			if(sizeVideos[indice]+capacity<=sizeServer){
+				capacity+=sizeVideos[indice];
+				videodispo.erase(videodispo.begin()+indice);
+				videoCached.push_back(videodispo[indice]);
+			}else{
+				videodispo.erase(videodispo.begin()+indice);
+			}
+		}
+		result.push_back(videoCached);
+	}
 	return result;
 }
 
