@@ -89,14 +89,14 @@ int64_t getScore(vector<vector<int>>& result, vector<struct point>& endPoints){
 			}
 
 			//We compute the local score
-			int localScore = (latencyToDataCenter - minLatency)*videoNBRequest*1000;
+			int localScore = (latencyToDataCenter - minLatency)*videoNBRequest;
 			score += localScore;
 			scoreDataCenter += videoNBRequest;
 
 		}
 	}
 
-	return score/scoreDataCenter;
+	return score;
 }
 
 int getScoreVideoEndPoint(int videoId, int endPointId, const vector<struct point>& endPoints, vector<vector<int>>& result){

@@ -46,33 +46,34 @@ int main(int argc, char ** argv){
 	vector<vector<int>> serverToPoint;
 	readFile(inFile, values, vecPoints, sizesVideos, serverToPoint);
 
-	vector<vector<int> > result = solveProblem(sizesVideos, vecPoints, values[4], values[3],serverToPoint);
-	//~ printf("Result is computed\n");
-	//~ checkSolution(result, sizesVideos, values[4]);
-	//~ printf("Result is checked\n");
-	//~ printf("Score is %ld\n", getScore(result, vecPoints));
-	//~ printSolution(outFile, result);
+	vector<vector<int> > result = solveProble2ouf(sizesVideos, vecPoints, values[4], values[3],serverToPoint);
+	printf("Result is computed\n");
+	checkSolution(result, sizesVideos, values[4]);
+	printf("Result is checked\n");
+	printf("Score is %ld\n", getScore(result, vecPoints));
+	printSolution(outFile, result);
 
 	//~ uint i(0);
 	//~ cout << vecPoints[1].videosId.size() << endl;
 	//~ cout << values.back() << " " << values[3] << endl;
-	atomic<int> bestScore;
-	bestScore=0;
-	vector<vector<int> > finalResult;
-	#pragma omp parallel for
-	for (uint i=0; i < 100; ++i){
-		//~ cout << "i " << i << endl;
-		vector<vector<int> > resultrandom = solveProblemRandom(sizesVideos,  vecPoints, values.back(), values[3], serverToPoint);
-		//~ cout << resultrandom.size() <<  endl;
-		int scorerandom = getScore(resultrandom, vecPoints);
-		//~ cout << scorerandom << endl;
-		if (scorerandom > bestScore){
-			bestScore = scorerandom;
-			finalResult = resultrandom;
-		}
-	}
-	cout << bestScore << endl;
-	printSolution(outFile, finalResult);
+//	atomic<int64_t> bestScore;
+//	bestScore=0;
+//	vector<vector<int> > finalResult;
+//	#pragma omp parallel for
+//	for (uint i=0; i < 100; ++i){
+//		//~ cout << "i " << i << endl;
+//		vector<vector<int> > resultrandom = solveProblemRandom(sizesVideos, vecPoints, values[4], values[3],serverToPoint);
+//		//~ cout << resultrandom.size() <<  endl;
+//		int64_t scorerandom = getScore(resultrandom, vecPoints);
+//		cout << scorerandom << endl;
+//		if (scorerandom > bestScore){
+//			bestScore = scorerandom;
+//			finalResult = resultrandom;
+//		}
+//	}
+//	cout << bestScore << endl;
+//	checkSolution(finalResult, sizesVideos, values[4]);
+//	printSolution(outFile, finalResult);
 	//~ cout << vecPoints[1].videosId.size() << endl;
 
 	return 0;

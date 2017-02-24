@@ -19,7 +19,7 @@
 #include <vector>
 #include "parser.h"
 
-
+#include "utils.h"
 
 using namespace std;
 
@@ -38,7 +38,7 @@ int maxVector(vector<int>& V){
 }
 
 
-bool comparatorConnectivity (pair<int,int> A, pair<int,int> B) { return (A.second<B.second); }
+bool comparatorConnectivity (pair<int,int> A, pair<int,int> B) { return (A.second>B.second); }
 
 
 
@@ -105,8 +105,8 @@ vector<vector<int>> solveProblemRandom(const vector<int>& sizeVideos,  const vec
 			int indice=rand()%videodispo.size();
 			if(sizeVideos[indice]+capacity<=sizeServer){
 				capacity+=sizeVideos[indice];
-				videodispo.erase(videodispo.begin()+indice);
 				videoCached.push_back(videodispo[indice]);
+				videodispo.erase(videodispo.begin()+indice);
 			}else{
 				videodispo.erase(videodispo.begin()+indice);
 			}
@@ -119,6 +119,7 @@ vector<vector<int>> solveProblemRandom(const vector<int>& sizeVideos,  const vec
 
 vector<vector<int>> solveProble2ouf(const vector<int>& sizeVideos,  const vector<point>& pointsVector, int sizeServer, int serverNumber, const vector<vector<int>>& serverToPoint){
 	vector<vector<int>> result;
+	result.resize(serverNumber);
 	vector<pair<int,int>> serverConnectivity(serverNumber);
 	for(int i(0);i<serverNumber;++i){
 		serverConnectivity[i].first=i;
@@ -131,9 +132,12 @@ vector<vector<int>> solveProble2ouf(const vector<int>& sizeVideos,  const vector
 	sort(serverConnectivity.begin(),serverConnectivity.end(),comparatorConnectivity);
 	//foreach server
 	for (int i(0);i<serverConnectivity.size();++i){
+		cout << "Server " << i << "/" << serverConnectivity.size() << endl;
 		vector<int> videoLoaded;
-		int score(0);
 		vector<pair<int,int>> videoScore;
+		for (int oneVideo=0; oneVideo<sizeVideos.size(); oneVideo++){
+			videoScore.push_back({oneVideo, 0});
+		}
 		set<int> videoSet;
 		vector<int> clients=serverToPoint[i];
 		for (int j(0);j<clients.size();++j){//LOL PUT J
@@ -142,10 +146,16 @@ vector<vector<int>> solveProble2ouf(const vector<int>& sizeVideos,  const vector
 				videoSet.insert(client.videosId[ii]);
 			}
 		}
+		vector<int> videoVector({});
 		for(auto video : videoSet) {
+			videoVector.push_back(video);
+		}
+		#pragma omp parallel for
+		for(auto oneVideo = 0; oneVideo<videoVector.size(); oneVideo++) {
+			auto video = videoVector[oneVideo];
+			int score(0);
 			for(uint ii(0);ii<clients.size();++ii){
-				//~ int bestLatence computeBL(video,j);
-				int bestLatence (1000);
+				int bestLatence = getScoreVideoEndPoint(video, ii, pointsVector, result);
 				int latence;
 				point client(pointsVector[clients[ii]]);
 				for(uint id(0);id<client.idServers.size();++id){
@@ -162,22 +172,22 @@ vector<vector<int>> solveProble2ouf(const vector<int>& sizeVideos,  const vector
 				if(latence<bestLatence){
 					score+=(bestLatence-latence)*nbrequest;
 				}
-				videoScore.push_back({video,score});
 			}
+			videoScore[video].second = score/sizeVideos[videoScore[video].first];
+
 		}
 		sort(videoScore.begin(),videoScore.end(),comparatorConnectivity);
 		int freespace(sizeServer);
+
 		for(uint indVideoScore(0);indVideoScore<videoScore.size();++indVideoScore){
 			int indiceVideo(videoScore[indVideoScore].first);
 			int weight(sizeVideos[indiceVideo]);
 			if(weight<=freespace){
 				videoLoaded.push_back(indiceVideo);
 				freespace-=weight;
-			}else{
-				break;
 			}
 		}
-		result.push_back(videoLoaded);
+		result[i]=videoLoaded;
 	}
 	return result;
 }
