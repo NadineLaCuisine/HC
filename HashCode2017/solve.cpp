@@ -131,7 +131,8 @@ vector<vector<int>> solveProble2ouf(const vector<int>& sizeVideos,  const vector
 	}
 	sort(serverConnectivity.begin(),serverConnectivity.end(),comparatorConnectivity);
 	//foreach server
-	for (int i(0);i<serverConnectivity.size();++i){
+	#pragma omp parallel for
+	for (int i = 0;i<serverConnectivity.size();++i){
 		cout << "Server " << i << "/" << serverConnectivity.size() << endl;
 		vector<int> videoLoaded;
 		vector<pair<int,int>> videoScore;
